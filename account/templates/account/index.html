@@ -4,11 +4,36 @@
  index
 {% endblock %}
 
+{% block header %}
+<div class="container-fluid p-5 bg-secondary text-white text-center">
+    <h1> The tutorial, email_based login project </h1>
+    <p>this is first page</p>
+</div>
+{% endblock %}
 
 {% block content %}
-<div class="container-fluid p-5 bg-primary text-white text-center">
-    <h1> The tutorial, email_based login project </h1>
-    <p>try this!</p>
-</div>
-    <p>hello {{ user }}</p>
+
+    <div class="row" >
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4" >
+            <div class="card" style="width:300px; text-align: center">
+                <img class="card-img-top" src="" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <p class="card-text">To register use this link</p>
+                    <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" style="width:300px; text-align: center">
+                <img class="card-img-top" src="" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <p class="card-text">To login use this link</p>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+
+    </div>
 {% endblock %}
