@@ -26,3 +26,7 @@ This project uses Django's built-in @login_required decorator to ensure that use
 
 # Static Files
 This project also includes static files that demonstrate how to use static URLs in Django. There are two images on the homepage that are loaded from static URLs.
+
+
+# Note
+There are images in documentation directory.
