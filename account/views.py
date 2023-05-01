@@ -8,6 +8,8 @@ from account.models import User
 
 
 def index(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     return render(request,'account/index.html')
 
 
@@ -16,6 +18,9 @@ def user_login(request):
     global user
     title = 'login page'
     login_form = LoginForm()
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
 
     if request.method == 'POST':
         email= request.POST.get('email')
