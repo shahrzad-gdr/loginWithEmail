@@ -17,15 +17,15 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row">
-        <div class="col-sm-2">
-        </div>
         <div class="col-sm-4">
-            <p> first name </p>
-            <p> last name </p>
-            <p> email </p>
+        </div>
+        <div class="col-sm-2" >
+            <p> first name :</p>
+            <p> last name :</p>
+            <p> email :</p>
 
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-2">
             <p>
                 {% if user.first_name %}
                     {{ user.first_name }}
@@ -44,8 +44,51 @@
 
 
         </div>
-        <div class="col-sm-2">
-            <a href="#" class="btn btn-warning">update your info</a>
+        <div class="col-sm-4" style="text-align: center">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                update profile
+            </button>
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form action="{% url 'update' %}" method="post">
+                            {% csrf_token %}
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                               <div class="mb-3 mt-3">
+                                   <label for="email">Email:</label>
+                                   <input type="text" class="form-control" id="email" placeholder="{{ user.email }}" name="email" readonly>
+                               </div>
+                               <div class="mb-3 mt-3">
+                                   <label for="first_name">First name:</label>
+                                   <input type="text" class="form-control" id="first_name" placeholder="First name" name="first_name">
+                               </div>
+                               <div class="mb-3 mt-3">
+                                   <label for="last_name">Last name:</label>
+                                   <input type="text" class="form-control" id="last_name" placeholder="Last name" name="last_name">
+                               </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">save</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
             <br>
             <br>
             <a href="{% url 'logout' %}"  class="btn btn-danger">logout</a>
