@@ -50,13 +50,13 @@
             </button>
 
             <!-- The Modal -->
-            <div class="modal" id="myModal">
+            <div class="modal" id="myModal" style="text-align: left">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Modal Heading</h4>
+                            <h4 class="modal-title">Update Information</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <form action="{% url 'update' %}" method="post">
@@ -70,11 +70,11 @@
                                </div>
                                <div class="mb-3 mt-3">
                                    <label for="first_name">First name:</label>
-                                   <input type="text" class="form-control" id="first_name" placeholder="First name" name="first_name">
+                                   <input type="text" class="form-control" id="first_name" placeholder="First name" name="first_name" required>
                                </div>
                                <div class="mb-3 mt-3">
                                    <label for="last_name">Last name:</label>
-                                   <input type="text" class="form-control" id="last_name" placeholder="Last name" name="last_name">
+                                   <input type="text" class="form-control" id="last_name" placeholder="Last name" name="last_name" required>
                                </div>
                             </div>
 
