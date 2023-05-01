@@ -41,3 +41,8 @@ def user_login(request):
     }
     return render(request, 'account/login.html', context)
 
+
+@login_required()
+def user_logout(request):
+    logout(request)
+    return redirect('login')
