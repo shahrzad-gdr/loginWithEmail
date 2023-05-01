@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from account.forms import LoginForm
-import logging
+from account.models import User
 
 
 def index(request):
@@ -46,3 +46,33 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+
+
+
+def user_register(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+
+        if password == password2:
+            try:
+                user = User.objects.get(email=email)
+                messages.error(request, 'invalid email', 'danger')
+                return redirect('register')
+            except:
+                User.objects.create_user(
+                    email=email,
+                    password=password,
+                )
+                user = authenticate(email=email, password=password)
+                login(request, user)
+                return redirect('index')
+        else:
+            messages.error(request, 'passwords does not match!', 'danger')
+            return redirect('register')
+
+
+    return render(request, 'account/register.html')
+
