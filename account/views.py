@@ -82,7 +82,7 @@ def user_register(request):
     return render(request, 'account/register.html')
 
 
-@login_required(login_url='login')
+@login_required(login_url='index')
 def dashboard(request):
     title = 'dashboard page'
     context = {
