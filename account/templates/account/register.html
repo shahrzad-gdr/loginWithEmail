@@ -1,0 +1,54 @@
+{% extends 'account/__temp.html' %}
+
+{% block title %}
+ register
+{% endblock %}
+{% block header %}
+<div class="container-fluid p-5 bg-primary text-white text-center">
+    <h1> The tutorial, email_based login project </h1>
+    <p>(register page)</p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="mb-3 mt-3">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="mb-3">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                </div>
+                <div class="mb-3">
+                  <label for="pwd2">Confirm Password:</label>
+                  <input type="password" class="form-control" id="pwd2" placeholder="Enter password again" name="password2">
+                </div>
+                <div class="flex justify-start my-4 space-x-1">
+                    <div class="checkbox">
+                        <input type="checkbox" id="checkbox1" checked>
+                        <label for="checkbox1"><span class="checkbox-icon"></span> I Agree <a href="#"> Terms and Conditions</a></label>
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Create account</button>
+            </form>
+            <br>
+            <div>
+                If you have account, please <a href="{% url 'login' %}">login</a>!
+            </div>
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
