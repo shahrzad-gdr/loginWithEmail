@@ -3,7 +3,6 @@ from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from account.forms import LoginForm
 from account.models import User
 
 
@@ -17,7 +16,6 @@ def index(request):
 def user_login(request):
     global user
     title = 'login page'
-    login_form = LoginForm()
     if request.user.is_authenticated:
         return redirect('dashboard')
 
@@ -42,7 +40,6 @@ def user_login(request):
 
     context = {
         'title' : title,
-        'form' : login_form,
     }
     return render(request, 'account/login.html', context)
 
