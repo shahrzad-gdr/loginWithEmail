@@ -6,7 +6,7 @@
 
 {% block header %}
 <div class="container-fluid p-5 bg-primary text-white text-center">
-    <h1> The Tutorial Social Media Project </h1>
+    <h1> The tutorial, email_based login project </h1>
     <p>(login page)</p>
 </div>
 {% endblock %}
@@ -24,7 +24,6 @@
                     <label for="email">Email:</label>
                     <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                 </div>
-
                 <div class="mb-3">
                   <label for="pwd">Password:</label>
                   <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
@@ -40,7 +39,7 @@
             </form>
             <br>
             <div>
-                If you don't have account, please <a href="{% url 'register' %}">register</a> !
+{#                If you don't have account, please <a href="{% url 'register' %}">register</a> !#}
             </div>
         </div>
         <div class="col-sm-4">
