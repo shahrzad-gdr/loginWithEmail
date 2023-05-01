@@ -29,7 +29,7 @@ def user_login(request):
                 login(request, user)
                 if not remember_me:
                     request.session.set_expiry(0)  # Here if the remember me is False, that is why expiry is set to 0 seconds. So it will automatically close the session after the browser is closed.
-                return redirect('index')
+                return redirect('dashboard')
             else:
                 messages.error(request, 'This account is not active', 'warning')
         else:
@@ -68,7 +68,7 @@ def user_register(request):
                 )
                 user = authenticate(email=email, password=password)
                 login(request, user)
-                return redirect('index')
+                return redirect('dashboard')
         else:
             messages.error(request, 'passwords does not match!', 'danger')
             return redirect('register')
@@ -76,3 +76,11 @@ def user_register(request):
 
     return render(request, 'account/register.html')
 
+
+@login_required(login_url='login')
+def dashboard(request):
+    title = 'dashboard page'
+    context = {
+        'title' : title,
+    }
+    return render(request, 'account/dashboard.html', context)
