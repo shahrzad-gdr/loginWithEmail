@@ -9,3 +9,40 @@ from account.forms import LoginForm
 def index(request):
     return render(request,'account/index.html')
 
+
+
+def user_login(request):
+    global user
+    title = 'login'
+
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            cl_data = login_form.clean_data
+
+            email= cl_data["email"]
+            password= cl_data["password"]
+            remember_me= request.POST.get("remember_me")
+
+            user = authenticate(request, email=email, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    if not remember_me:
+                        request.session.set_expiry(0)  # Here if the remember me is False, that is why expiry is set to 0 seconds. So it will automatically close the session after the browser is closed.
+                    return redirect('index')
+                else:
+                    messages.error(request, 'This account is not active', 'warning')
+            else:
+                messages.error(request, 'Invalid email or password', 'danger')
+
+    else:
+        login_form = LoginForm()
+
+    context = {
+        'title' : title,
+        'form' : login_form,
+    }
+    return render(request, 'account/login.html', context)
+
