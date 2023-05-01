@@ -3,6 +3,7 @@ from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+from account.forms import UserUpdateForm
 from account.models import User
 
 
@@ -86,3 +87,26 @@ def dashboard(request):
         'title' : title,
     }
     return render(request, 'account/dashboard.html', context)
+
+
+
+
+@login_required(login_url='index')
+def update(request):
+    url = request.META.get('HTTP_REFERER')
+
+    if request.method == 'POST':
+        update_form = UserUpdateForm(request.POST)
+        try:
+            if update_form.is_valid():
+                cl_data = update_form.cleaned_data
+                user = User.objects.get(id=request.user.id)
+                user.first_name = cl_data['first_name']
+                user.last_name = cl_data['last_name']
+                user.save()
+            messages.success(request, 'your profile updated successfully', 'success')
+
+        except:
+            messages.error(request, 'updating profile failed', 'danger')
+
+    return redirect(url)
